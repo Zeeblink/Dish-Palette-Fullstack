@@ -11,8 +11,6 @@ interface RecipesType {
   recipes: Recipe[];
 }
 
-const API_KEY1 = "2ecf0a5ce6b7456e97ff317224c58869";
-const API_KEY2 = "013562ac369b4664b552f29d4aa440ed";
 
 const RecipesList: React.FC = async () => {
   let query = "random";
@@ -20,7 +18,7 @@ const RecipesList: React.FC = async () => {
 
   if (query === "random") {
     try {
-      const res = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${API_KEY2}&number=9`);
+      const res = await fetch(`https://api.spoonacular.com/recipes/random?apiKey=${process.env.API_KEY2}&number=9`);
       if (!res.ok) throw new Error('Failed to fetch data');
       const data: RecipesType = await res.json();
       recipes = data.recipes;
@@ -44,7 +42,7 @@ const RecipesList: React.FC = async () => {
             </div>
             <div className="p-4 bg-gray-100">
               <Link
-                href={`/recipe/${recipe.id}`}
+                href={`/${recipe.id}`}
                 className="text-white font-medium px-3 py-2 bg-green-600 hover:bg-gray-300 rounded-lg"
               >
                 View Recipe
