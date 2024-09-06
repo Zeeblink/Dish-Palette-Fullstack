@@ -61,7 +61,7 @@ const Header = () => {
 
             <li>
               <Link
-                href="/"
+                href="/login"
                 className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 
             border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0 mr-8"
               >
@@ -121,7 +121,7 @@ const Header = () => {
 
               <li>
                 <Link
-                  href="/"
+                  href="/login"
                   className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 
             border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0"
                 >
