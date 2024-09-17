@@ -1,9 +1,36 @@
 "use client"
 import React, { useState } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
+import { useRouter } from 'next/navigation';    
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      if (response.ok) {
+        router.push('/login');
+      } else {
+        const data = await response.json();
+        setError(data.message || 'An error occurred during sign up');
+      }
+    } catch (error) {
+      console.error('An error occurred during sign up:', error);
+      setError('An error occurred. Please try again.');
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5faf7]">
