@@ -1,7 +1,7 @@
 'use client';
-
 import { useState } from 'react';
 import Link from 'next/link';
+import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
 
 const Header = () => {
   const [visibility, setVisibility] = useState(false);
@@ -11,10 +11,10 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <header>
       {/* Navigation */}
-      <nav className="flex items-center justify-between shadow-md flex-wrap bg-white py-6 px-4">
-        <div className="flex items-center flex-shrink-0 text-green-600 mr-6">
+      <nav className="flex items-center justify-between shadow-md z-10 flex-wrap bg-white py-6 px-4">
+        <Link href='/' className="flex items-center flex-shrink-0 text-green-600 mr-6">
           <svg
             className="fill-current h-8 w-8 mr-2"
             width="54"
@@ -27,7 +27,7 @@ const Header = () => {
           <span className="font-semibold text-xl tracking-tight">
             Dish Palette
           </span>
-        </div>
+        </Link>
 
         {/* nav items */}
         <div className="">
@@ -44,7 +44,7 @@ const Header = () => {
             <li>
               <Link
                 href="/"
-                className="block mt-4 mr-8 lg:inline-block lg:mt-0 text-green-600 hover:text-green-800 mr-4"
+                className="block mt-4 mr-8 lg:inline-block lg:mt-0 text-green-600 hover:text-green-800"
               >
                 Ingredients
               </Link>
@@ -53,29 +53,38 @@ const Header = () => {
             <li>
               <Link
                 href="/"
-                className="block mt-4 mr-6 lg:inline-block lg:mt-0 text-green-600 hover:text-green-800 mr-8"
+                className="block mt-4 lg:inline-block lg:mt-0 text-green-600 hover:text-green-800 mr-8"
               >
                 About
               </Link>
             </li>
 
             <li>
-              <Link
-                href="/login"
-                className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 
+              <SignedOut>
+                <Link
+                  href="/sign-in"
+                  className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 
             border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0 mr-8"
-              >
-                Sign In
-              </Link>
+                >
+                  Sign In
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton showName />
+              </SignedIn>
+
             </li>
           </ul>
         </div>
 
         {/* Hamburger icon */}
-        <div className="lg:hidden">
+        <div className="lg:hidden flex">
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
           <button
             onClick={navToggle}
-            className="flex items-center px-3 py-2 border rounded text-green-600 border-green-600 hover:text-white  hover:bg-green-600"
+            className="flex items-center ml-4 px-3 py-2 border rounded text-green-600 border-green-600 hover:text-white  hover:bg-green-600"
           >
             <svg
               className="fill-current h-3 w-3"
@@ -87,6 +96,7 @@ const Header = () => {
             </svg>
           </button>
         </div>
+
 
         {/*mobile nav items */}
         {visibility && (
@@ -120,19 +130,21 @@ const Header = () => {
               </li>
 
               <li>
-                <Link
-                  href="/login"
-                  className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 
+                <SignedOut>
+                  <Link
+                    href="/sign-in"
+                    className="inline-block text-sm px-4 py-2 leading-none border rounded text-green-600 
             border-green-600 hover:border-transparent hover:text-white hover:bg-green-600 mt-4 lg:mt-0"
-                >
-                  Sign In
-                </Link>
+                  >
+                    Sign In
+                  </Link>
+                </SignedOut>
               </li>
             </ul>
           </div>
         )}
       </nav>
-    </div>
+    </header>
   );
 }
 export default Header;

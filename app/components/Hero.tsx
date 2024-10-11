@@ -2,9 +2,9 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <div>
+    <>
       {/* <!-- Hero section --> */}
-      <div className=" w-full mt-10 pt-16 sm:pt-24 px-4">
+      <div className="bg-gray-100 flex-col w-full pt-24 sm:pt-24 px-4 h-[70vh] items-center">
         <h1 className="text-center text-4xl sm:text-5xl mb-14 text-gray-800 leading-1.5 roboto-regular">
           Find the Perfect Recipe for your next meal
         </h1>
@@ -28,7 +28,7 @@ const Hero = () => {
       <h1 className="text-center text-3xl font-bold origin-center text-gray-800 mb-16">
         Popular Recipes
       </h1>
-    </div>
+    </>
   )
 }
 

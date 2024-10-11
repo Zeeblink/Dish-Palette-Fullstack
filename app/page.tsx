@@ -1,18 +1,28 @@
-import Image from "next/image";
-import Header from "./components/Header";
 import Hero from "./components/Hero";
-import RecipesList from "./components/RecipesList";
+// import RecipesList from "./components/RecipesList";
+import CategoryButton from "./components/Category";
 
 export default function Home() {
   let query = "random"
   return (
     <main>
       <Hero/>
-      <RecipesList/>
+      {/* <RecipesList/> */}
+      {/* Categories */}
+      <section className="bg-gray-100 py-12">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-semibold text-gray-800 mb-6">Explore Categories</h2>
+          <div className="flex justify-center gap-4">
+            <CategoryButton name="Desserts" />
+            <CategoryButton name="Main Courses" />
+            <CategoryButton name="Appetizers" />
+            <CategoryButton name="Drinks" />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
-
 
 {/* <div className="bg-gray-100">
       <Navigation />

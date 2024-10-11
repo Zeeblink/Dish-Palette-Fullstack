@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import { Providers } from "./Providers";
+import { ClerkProvider } from "@clerk/nextjs";
+import LayoutWrapper from "./components/LayoutWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,8 +17,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}><Header/><Providers>{children}</Providers><Footer/></body>
-    </html>
+    <ClerkProvider appearance={{
+      variables: {
+        colorPrimary: "#16A34A", // Your primary brand color
+        colorBackground: "#ffffff", // Background color
+        colorText: "#333333", // Text color
+        fontFamily: "Helvetica, Arial, sans-serif", // Font family
+        fontSize: "16px", // Font size
+      },
+    }}>
+      <html lang="en">
+        <body className={inter.className}>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
