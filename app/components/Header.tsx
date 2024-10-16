@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import Link from 'next/link';
-import { SignedIn, SignedOut, UserButton, SignInButton } from '@clerk/nextjs';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 const Header = () => {
   const [visibility, setVisibility] = useState(false);
@@ -70,7 +70,20 @@ const Header = () => {
                 </Link>
               </SignedOut>
               <SignedIn>
-                <UserButton showName />
+              <UserButton>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label='Dashboard'
+                  href='/dashboard'
+                  labelIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>}
+                />
+                <UserButton.Link
+                  label='Create Recipe'
+                  href='/create-recipe'
+                  labelIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"> <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
               </SignedIn>
 
             </li>
@@ -80,7 +93,20 @@ const Header = () => {
         {/* Hamburger icon */}
         <div className="lg:hidden flex">
           <SignedIn>
-            <UserButton />
+            <UserButton>
+              <UserButton.MenuItems>
+                <UserButton.Link
+                  label='Dashboard'
+                  href='/dashboard'
+                  labelIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>}
+                />
+                <UserButton.Link
+                  label='Create Recipe'
+                  href='/create-recipe'
+                  labelIcon={<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"> <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512z" /></svg>}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
           </SignedIn>
           <button
             onClick={navToggle}

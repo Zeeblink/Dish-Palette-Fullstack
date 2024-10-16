@@ -1,3 +1,44 @@
+import React, { useState } from 'react'
+import { Recipe } from './CreateRecipe' 
+
+const RecipeList = () => {
+    const [recipes, setRecipes] = useState<Recipe[]>([]);
+
+    const fetchRecipes  = async () => {
+        try {
+            const data = await fetch('/api/recipes')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React from 'react';
 // import Link from 'next/link'; // Assuming you're using Next.js
 

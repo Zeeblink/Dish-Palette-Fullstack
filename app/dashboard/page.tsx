@@ -3,7 +3,6 @@ import React from 'react';
 import ProfileCard from '../components/ProfileCard';
 import UserRecipes from '../components/UserRecipes';
 import ActivityFeed from '../components/ActivityFeed';
-import UserSettings from '../components/UserSettings';
 
 const DashboardPage = () => {
   return (
@@ -12,7 +11,6 @@ const DashboardPage = () => {
       <div className="col-span-2 space-y-6">
         <UserRecipes />
         <ActivityFeed />
-        <UserSettings />
       </div>
     </div>
   );

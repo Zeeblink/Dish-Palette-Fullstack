@@ -15,7 +15,7 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { title, image, extendedIngredients, instructions, authorId } = body;
+    const { title, image, ingredients, instructions, authorId } = body;
 
     if (!title || !instructions || !authorId) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -25,7 +25,7 @@ export async function POST(req: Request) {
       data: {
         title,
         image,
-        extendedIngredients,
+        ingredients,
         instructions,
         authorId,
       },
@@ -33,6 +33,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json(newRecipe, { status: 201 });
   } catch (error) {
+    console.log(error)
     return NextResponse.json({ error: 'Failed to create recipe' }, { status: 500 });
   }
 }
@@ -61,7 +62,7 @@ export async function DELETE(req: Request) {
 export async function PUT(req: Request) {
   try {
     const body = await req.json();
-    const { id, title, image, extendedIngredients, instructions, authorId } = body;
+    const { id, title, image, ingredients, instructions, authorId } = body;
 
     if (!id || !title || !instructions || !authorId) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
@@ -72,7 +73,7 @@ export async function PUT(req: Request) {
       data: {
         title,
         image,
-        extendedIngredients,
+        ingredients,
         instructions,
         authorId,
       },

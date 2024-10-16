@@ -25,7 +25,7 @@ model Recipe {
   id                 Int      @id @default(autoincrement())
   title              String
   image              String
-  extendedIngredients String
+  ingredients        String[]
   instructions       String
   authorId           String
   author             User     @relation(fields: [authorId], references: [clerkId], onDelete: Cascade)

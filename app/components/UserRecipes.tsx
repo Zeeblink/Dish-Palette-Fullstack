@@ -1,4 +1,5 @@
 // components/RecipeList.tsx
+import Link from 'next/link';
 import React from 'react';
 
 const UserRecipes = () => {
@@ -22,9 +23,9 @@ const UserRecipes = () => {
         </li>
         {/* Add logic to dynamically render user recipes */}
       </ul>
-      <button className="bg-[#F5FAF7] text-gray-800 px-4 py-2 mt-6 rounded-md shadow-md hover:bg-gray-200 w-full">
+      <Link href='/create-recipe' className="bg-[#F5FAF7] text-gray-800 px-4 py-2 mt-6 rounded-md shadow-md hover:bg-gray-200 w-full">
         Add New Recipe
-      </button>
+      </Link>
     </div>
   );
 };
