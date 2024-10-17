@@ -28,15 +28,31 @@ const UserRecipes = () => {
   };
 
   // Update parameter type to number
-  const editRecipe = (recipeId: number) => {
-    setOpenMenuId(null);
+  // const editRecipe = (recipeId: number) => {
+    // setOpenMenuId(null);
     // Add your edit logic here
-  };
+  // };
 
   // Update parameter type to number
-  const deleteRecipe = (recipeId: number) => {
+  const deleteRecipe = async (recipeId: number) => {
     setOpenMenuId(null);
-    // Add your delete logic here
+    try {
+      const response = await fetch(`/api/recipes?id=${recipeId}`, {
+        method: 'DELETE',
+      });
+      if(response.ok){
+        setUserRecipes((prevRecipes) =>
+          prevRecipes.filter((recipe) => recipe.id !== recipeId)
+        );
+        alert("Deleted Successfully")
+        console.log("Deleted Successfully")
+      } else {
+        throw new Error("Failed to Delete")
+      }
+      // Add your delete logic here 
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -54,7 +70,7 @@ const UserRecipes = () => {
               <span>💬 30</span>
             </div>
             <div className="relative">
-              <button 
+              <button
                 onClick={() => toggleMenu(recipe.id)}
                 className="text-gray-500 hover:text-gray-700 px-2"
               >
@@ -64,15 +80,15 @@ const UserRecipes = () => {
                 <div className="absolute right-0 mt-2 w-28 bg-white border border-gray-200 rounded shadow-lg z-10">
                   <ul className="py-1">
                     <li>
-                      <button 
-                        onClick={() => editRecipe(recipe.id)}
+                      <button
+                        // onClick={() => editRecipe(recipe.id)}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                       >
                         Edit
                       </button>
                     </li>
                     <li>
-                      <button 
+                      <button
                         onClick={() => deleteRecipe(recipe.id)}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                       >

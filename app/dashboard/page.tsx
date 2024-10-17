@@ -1,19 +1,7 @@
 import React from 'react';
 import ProfileCard from '../components/ProfileCard';
 import UserRecipes from '../components/UserRecipes';
-// import { Recipe } from '../components/CreateRecipe';
 import Link from 'next/link';
-
-// Fetch the User Recipes
-// const fetchUserRecipes = async () => {
-//   const res = await fetch('http:localhost:3000/api/recipes', {
-//     method: 'GET'
-//   });
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data');
-//   }
-//   return res.json();
-// }
 
 export default async function Dashboard() {
 

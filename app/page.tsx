@@ -3,7 +3,6 @@ import RecipeList from "./components/RecipesList";
 import CategoryButton from "./components/Category";
 
 export default function Home() {
-  let query = "random"
   return (
     <main className="bg-gray-100">
       <Hero/>
