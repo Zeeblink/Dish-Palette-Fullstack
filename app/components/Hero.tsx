@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <>
       {/* <!-- Hero section --> */}
-      <div className="bg-gray-100 flex-col w-full pt-24 sm:pt-24 px-4 h-[70vh] items-center">
+      <div className=" flex-col w-full pt-24 sm:pt-24 px-4 h-[70vh] items-center">
         <h1 className="text-center text-4xl sm:text-5xl mb-14 text-gray-800 leading-1.5 roboto-regular">
           Find the Perfect Recipe for your next meal
         </h1>

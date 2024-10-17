@@ -1,15 +1,15 @@
 import Hero from "./components/Hero";
-// import RecipesList from "./components/RecipesList";
+import RecipeList from "./components/RecipesList";
 import CategoryButton from "./components/Category";
 
 export default function Home() {
   let query = "random"
   return (
-    <main>
+    <main className="bg-gray-100">
       <Hero/>
-      {/* <RecipesList/> */}
+      <RecipeList/>
       {/* Categories */}
-      <section className="bg-gray-100 py-12">
+      <section className="py-12">
         <div className="max-w-6xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6">Explore Categories</h2>
           <div className="flex justify-center gap-4">

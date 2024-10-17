@@ -3,15 +3,49 @@ import React from 'react';
 
 const ProfileCard = () => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md text-center">
-      <img src="/path-to-profile-image.jpg" alt="Profile" className="w-24 h-24 mx-auto rounded-full mb-4" />
-      <h2 className="text-xl font-semibold mb-2">John Doe</h2>
-      <p className="text-gray-600 mb-2">johndoe@example.com</p>
-      <p className="text-gray-500 mb-4">Passionate home cook sharing recipes with the world.</p>
-      <button className="bg-[#F5FAF7] text-gray-800 px-4 py-2 rounded-md shadow-md hover:bg-gray-200">
-        Edit Profile
-      </button>
-    </div>
+    <aside className="w-64 bg-primary text-white p-6 space-y-6">
+        <h2 className="text-xl font-bold">Dishpalette</h2>
+        <nav>
+          <ul className="space-y-4">
+            <li>
+              <a href="#" className="flex items-center space-x-2">
+                <span>🏠</span>
+                <span>Dashboard Overview</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" className="flex items-center space-x-2">
+                <span>📖</span>
+                <span>My Recipes</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" className="flex items-center space-x-2">
+                <span>➕</span>
+                <span>Create New Recipe</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" className="flex items-center space-x-2">
+                <span>❤️</span>
+                <span>Favorites</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" className="flex items-center space-x-2">
+                <span>⚙️</span>
+                <span>Settings</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" className="flex items-center space-x-2">
+                <span>🚪</span>
+                <span>Log Out</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
   );
 };
 

@@ -6,30 +6,29 @@ import Image from 'next/image';
 import { CldUploadWidget } from 'next-cloudinary';
 
 export interface Recipe {
+  id: number;
   title: string;
   image: string;
   ingredients: string[];
   instructions: string;
+  authorId: string;
 }
 
 const CreateRecipePage: React.FC = () => {
   const { userId } = useAuth();
   const router = useRouter();
   const [recipe, setRecipe] = useState<Recipe>({
+    id: 0,
     title: '',
     image: '',
     ingredients: [''],
     instructions: '',
+    authorId: ''
   });
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setRecipe((prev) => ({ ...prev, [name]: value }));
   };
-
-  const handleImageUpload = (result: any) => {
-    setRecipe((prev) => ({ ...prev, image: result.info.secure_url }));
-  };
-
   const handleIngredientChange = (index: number, value: string) => {
     setRecipe((prev) => {
       const newIngredients = [...prev.ingredients];
@@ -44,6 +43,11 @@ const CreateRecipePage: React.FC = () => {
       ingredients: [...prev.ingredients, ''],
     }));
   };
+
+  const handleImageUpload = (result: any) => {
+    setRecipe((prev) => ({ ...prev, image: result.info.secure_url }));
+  };
+
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
