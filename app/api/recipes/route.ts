@@ -58,29 +58,3 @@ export async function DELETE(req: Request) {
   }
 }
 
-// PUT (Update) a recipe
-export async function PUT(req: Request) {
-  try {
-    const body = await req.json();
-    const { id, title, image, ingredients, instructions, authorId } = body;
-
-    if (!id || !title || !instructions || !authorId) {
-      return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
-    }
-
-    const updatedRecipe = await prisma.recipe.update({
-      where: { id: parseInt(id, 10) },
-      data: {
-        title,
-        image,
-        ingredients,
-        instructions,
-        authorId,
-      },
-    });
-
-    return NextResponse.json(updatedRecipe);
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to update recipe' }, { status: 500 });
-  }
-}

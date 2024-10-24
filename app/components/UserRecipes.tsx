@@ -1,9 +1,11 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
-import { Recipe } from './CreateRecipe'
+import { Recipe } from '../types'
+import { useRouter } from 'next/navigation'
 
 const UserRecipes = () => {
+  const router = useRouter();
   // Change the type to accept number
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [userRecipes, setUserRecipes] = useState<Recipe[]>([]);
@@ -22,16 +24,15 @@ const UserRecipes = () => {
     fetchUserRecipes();
   }, [userId]);
 
-  // Update parameter type to number
+  // Toggle Menu
   const toggleMenu = (recipeId: number) => {
     setOpenMenuId(openMenuId === recipeId ? null : recipeId);
   };
 
-  // Update parameter type to number
-  // const editRecipe = (recipeId: number) => {
-    // setOpenMenuId(null);
-    // Add your edit logic here
-  // };
+  // Edit Recipe
+  const editRecipe = (recipeId: number) => {
+    router.push(`/edit-recipe/${recipeId}`)
+  };
 
   // Update parameter type to number
   const deleteRecipe = async (recipeId: number) => {
@@ -81,7 +82,7 @@ const UserRecipes = () => {
                   <ul className="py-1">
                     <li>
                       <button
-                        // onClick={() => editRecipe(recipe.id)}
+                        onClick={() => editRecipe(recipe.id)}
                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
                       >
                         Edit

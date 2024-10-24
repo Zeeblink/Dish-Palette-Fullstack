@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import { Recipe } from './CreateRecipe'
+import { Recipe } from '../types'
 import Link from 'next/link'
 
 const RecipeList = () => {
@@ -36,7 +36,7 @@ const RecipeList = () => {
                         </div>
                         <div className="p-4 bg-gray-100">
                             <Link
-                                href={`#`}
+                                href={`/recipes/${recipe.id}`}
                                 className="text-white font-medium px-3 py-2 bg-green-600 hover:bg-gray-300 rounded-lg"
                             >
                                 View Recipe
