@@ -1,6 +1,18 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const Hero = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
   return (
     <>
       {/* <!-- Hero section --> */}
@@ -10,15 +22,18 @@ const Hero = () => {
         </h1>
         <form
           className="flex items-center justify-center pb-10"
+          onSubmit={handleSearch}
         >
           <input
             className="bg-white focus:outline-none focus:shadow-outline border focus:bg-white border-gray-300 
                 rounded-lg py-2 px-4 block w-1/2 appearance-none leading-normal focus:border-green-600"
             type="text"
             placeholder="Search for recipes"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
           />
           <button
-            id="search"
+            type="submit"
             className="bg-green-600 hover:bg-green-800 text-white font-bold py-2 px-4 rounded-lg ml-4"
           >
             Search

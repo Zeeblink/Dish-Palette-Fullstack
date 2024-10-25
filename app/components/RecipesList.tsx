@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchRecipes = async () => {
             try {

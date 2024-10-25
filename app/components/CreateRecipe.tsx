@@ -18,6 +18,8 @@ const CreateRecipePage: React.FC = () => {
     instructions: '',
     authorId: ''
   });
+  const [hasImage, setHasImage] = useState(false);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setRecipe((prev) => ({ ...prev, [name]: value }));
@@ -36,9 +38,17 @@ const CreateRecipePage: React.FC = () => {
       ingredients: [...prev.ingredients, ''],
     }));
   };
+  const handleRemoveIngredient = (index: number) => {
+    setRecipe((prev) => {
+      const newIngredients = [...prev.ingredients];
+      newIngredients.splice(index, 1);
+      return { ...prev, ingredients: newIngredients };
+    });
+  };
 
   const handleImageUpload = (result: any) => {
     setRecipe((prev) => ({ ...prev, image: result.info.secure_url }));
+    setHasImage(true);
   };
 
 
@@ -57,7 +67,7 @@ const CreateRecipePage: React.FC = () => {
       });
 
       if (response.ok) {
-        router.push('/');
+        router.push('/dashboard');
       } else {
         throw new Error('Failed to create recipe');
       }
@@ -87,7 +97,7 @@ const CreateRecipePage: React.FC = () => {
 
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Recipe Image</label>
-          <CldUploadWidget uploadPreset={`${process.env.UPLOAD_PRESET}`} onSuccess={handleImageUpload}>
+          <CldUploadWidget uploadPreset={`${process.env.NEXT_PUBLIC_UPLOAD_PRESET}`} onSuccess={handleImageUpload}>
             {({ open }) => (
               <button onClick={() => open()} className="px-4 py-2 bg-[#16A34A] text-white rounded-md hover:bg-[#138a3e]">
                 Upload Image
@@ -99,19 +109,33 @@ const CreateRecipePage: React.FC = () => {
               <Image src={recipe.image} alt="Recipe preview" width={200} height={200} className="rounded-md" />
             </div>
           )}
+          {hasImage && (
+            <button 
+            type="button" onClick={() => setHasImage(false)} className="px-4 py-2 bg-red text-white rounded-md hover:bg-red-600">
+              Remove Image
+            </button>
+          )}
         </div>
 
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Ingredients</label>
           {recipe.ingredients.map((ingredient, index) => (
-            <input
-              key={index}
-              type="text"
-              value={ingredient}
-              onChange={(e) => handleIngredientChange(index, e.target.value)}
-              className="w-full px-3 py-2 border rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-[#16A34A]"
-              placeholder={`Ingredient ${index + 1}`}
-            />
+            <div key={index} className="flex items-center mb-2">
+              <input
+                type="text"
+                value={ingredient}
+                onChange={(e) => handleIngredientChange(index, e.target.value)}
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[#16A34A]"
+                placeholder={`Ingredient ${index + 1}`}
+              />
+              <button
+                type="button"
+                onClick={() => handleRemoveIngredient(index)}
+                className="ml-2 px-2 py-1 bg-[#16A34A] text-white rounded-md hover:bg-[#138a3e] focus:outline-none focus:ring-2 focus:ring-[#16A34A] focus:ring-opacity-50"
+              >
+                X
+              </button>
+            </div>
           ))}
           <button
             type="button"
