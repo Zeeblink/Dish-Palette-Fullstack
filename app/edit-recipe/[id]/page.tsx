@@ -6,6 +6,8 @@ import Image from 'next/image';
 import { CldUploadWidget } from 'next-cloudinary';
 import { Recipe } from '@/app/types';
 
+
+
 const EditRecipe: React.FC = () => {
   const { userId } = useAuth();
   const router = useRouter();
@@ -50,6 +52,8 @@ const EditRecipe: React.FC = () => {
     }
   }, [params.id, userId, router]);
 
+  const [hasImage, setHasImage] = useState(recipe.image ? true : false);
+
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setRecipe((prev) => ({ ...prev, [name]: value }));
@@ -70,10 +74,19 @@ const EditRecipe: React.FC = () => {
     }));
   };
 
+  const handleRemoveIngredient = (index: number) => {
+    setRecipe((prev) => {
+      const newIngredients = [...prev.ingredients];
+      newIngredients.splice(index, 1);
+      return { ...prev, ingredients: newIngredients };
+    });
+  };
+
   const handleImageUpload = (result: any) => {
     setRecipe((prev) => ({ ...prev, image: result.info.secure_url }));
   };
 
+  // PUT request to update recipe
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!userId) {
@@ -100,7 +113,11 @@ const EditRecipe: React.FC = () => {
     }
   };
 
-  if (isLoading) return <div className="min-h-screen bg-[#f5faf7] p-8 flex justify-center items-center">Loading...</div>;
+  if (isLoading) return 
+  <div className="flex justify-center items-center h-screen">
+    <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-green-500"></div>
+  </div>;
+
   if (error) return <div className="min-h-screen bg-[#f5faf7] p-8 flex justify-center items-center text-red-500">{error}</div>;
 
   return (
@@ -108,6 +125,7 @@ const EditRecipe: React.FC = () => {
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-[#16A34A]">Edit Recipe</h1>
 
+        {/* Title input */}
         <div className="mb-4">
           <label htmlFor="title" className="block mb-2 font-semibold">Title</label>
           <input
@@ -121,10 +139,11 @@ const EditRecipe: React.FC = () => {
           />
         </div>
 
+        {/* Image upload */}
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Recipe Image</label>
           <div className="flex items-center gap-4">
-            <CldUploadWidget uploadPreset={`${process.env.UPLOAD_PRESET}`} onSuccess={handleImageUpload}>
+            <CldUploadWidget uploadPreset={`${process.env.NEXT_PUBLIC_UPLOAD_PRESET}`} onSuccess={handleImageUpload}>
               {({ open }) => (
                 <button
                   type="button"
@@ -140,13 +159,27 @@ const EditRecipe: React.FC = () => {
                 <Image src={recipe.image} alt="Recipe preview" width={200} height={200} className="rounded-md" />
               </div>
             )}
+            {hasImage && (
+              <button
+                type="button"
+                onClick={() => {
+                  setRecipe((prev) => ({ ...prev, image: '' }));
+                  setHasImage(false);
+                }}
+                className="ml-2 px-2 py-1 text-red-500"
+              >
+                X
+              </button>
+            )}
           </div>
         </div>
 
+        {/* Ingredients */}
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Ingredients</label>
           {recipe.ingredients.map((ingredient, index) => (
-            <input
+            <div className="flex items-center mb-2" key={index}>
+              <input
               key={index}
               type="text"
               value={ingredient}
@@ -154,6 +187,14 @@ const EditRecipe: React.FC = () => {
               className="w-full px-3 py-2 border rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-[#16A34A]"
               placeholder={`Ingredient ${index + 1}`}
             />
+            <button
+                type="button"
+                onClick={() => handleRemoveIngredient(index)}
+                className="ml-2 px-2 py-1 bg-[#16A34A] text-white rounded-md hover:bg-[#138a3e] focus:outline-none focus:ring-2 focus:ring-[#16A34A] focus:ring-opacity-50"
+              >
+                X
+              </button>
+            </div>
           ))}
           <button
             type="button"
@@ -164,6 +205,7 @@ const EditRecipe: React.FC = () => {
           </button>
         </div>
 
+        {/* Instructions */}
         <div className="mb-4">
           <label htmlFor="instructions" className="block mb-2 font-semibold">Instructions</label>
           <textarea
@@ -176,6 +218,7 @@ const EditRecipe: React.FC = () => {
           />
         </div>
 
+          {/* Save and Cancel Buttons */}
         <div className="flex gap-4">
           <button
             type="button"

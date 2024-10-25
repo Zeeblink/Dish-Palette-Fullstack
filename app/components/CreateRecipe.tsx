@@ -4,7 +4,7 @@ import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { CldUploadWidget } from 'next-cloudinary';
-import {Recipe} from '../types'
+import { Recipe } from '../types'
 
 
 const CreateRecipePage: React.FC = () => {
@@ -59,11 +59,12 @@ const CreateRecipePage: React.FC = () => {
       return;
     }
 
+    // Send POST request to create new recipe
     try {
       const response = await fetch('/api/recipes', {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({...recipe, authorId: userId}),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...recipe, authorId: userId }),
       });
 
       if (response.ok) {
@@ -81,7 +82,8 @@ const CreateRecipePage: React.FC = () => {
     <div className="min-h-screen bg-[#f5faf7] text-gray-800 p-8">
       <form onSubmit={handleSubmit} className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold mb-6 text-[#16A34A]">Create New Recipe</h1>
-        
+
+        {/* Title input */}
         <div className="mb-4">
           <label htmlFor="title" className="block mb-2 font-semibold">Title</label>
           <input
@@ -95,6 +97,8 @@ const CreateRecipePage: React.FC = () => {
           />
         </div>
 
+
+        {/* Image upload */}
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Recipe Image</label>
           <CldUploadWidget uploadPreset={`${process.env.NEXT_PUBLIC_UPLOAD_PRESET}`} onSuccess={handleImageUpload}>
@@ -104,19 +108,28 @@ const CreateRecipePage: React.FC = () => {
               </button>
             )}
           </CldUploadWidget>
-          {recipe.image && (
-            <div className="mt-2">
-              <Image src={recipe.image} alt="Recipe preview" width={200} height={200} className="rounded-md" />
-            </div>
-          )}
-          {hasImage && (
-            <button 
-            type="button" onClick={() => setHasImage(false)} className="px-4 py-2 bg-red text-white rounded-md hover:bg-red-600">
-              Remove Image
-            </button>
-          )}
+          <div className="flex">
+            {recipe.image && (
+              <div className="mt-2">
+                <Image src={recipe.image} alt="Recipe preview" width={200} height={200} className="rounded-md" />
+              </div>
+            )}
+            {hasImage && (
+              <button
+                type="button"
+                onClick={() => {
+                  setRecipe((prev) => ({ ...prev, image: '' }));
+                  setHasImage(false);
+                }}
+                className="ml-2 px-2 py-1 text-red-500"
+              >
+                X
+              </button>
+            )}
+          </div>
         </div>
 
+        {/* Ingredients */}
         <div className="mb-4">
           <label className="block mb-2 font-semibold">Ingredients</label>
           {recipe.ingredients.map((ingredient, index) => (
@@ -145,7 +158,8 @@ const CreateRecipePage: React.FC = () => {
             Add Ingredient
           </button>
         </div>
-
+        
+        {/* Instructions */}
         <div className="mb-4">
           <label htmlFor="instructions" className="block mb-2 font-semibold">Instructions</label>
           <textarea
