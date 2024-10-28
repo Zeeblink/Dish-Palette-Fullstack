@@ -1,14 +1,15 @@
 import { Recipe } from "../../types";
 
-// interface RecipePageProps {
-//   recipe: Recipe | null;
-// }
-
 export default async function RecipePage({ params }: { params: { id: string } }) {
   const { id } = params;
 
+  // Add base URL for API requests
+  const baseUrl = process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}` 
+    : 'http://localhost:3000';
+    
   // Fetch the recipe data on the server side
-  const response = await fetch(`http://localhost:3000/api/recipes/${id}`);
+  const response = await fetch(`${baseUrl}/api/recipes/${id}`);
   const recipe: Recipe | null = response.ok ? await response.json() : null;
 
   return (
