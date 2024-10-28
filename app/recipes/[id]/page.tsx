@@ -3,13 +3,18 @@ import { Recipe } from "../../types";
 export default async function RecipePage({ params }: { params: { id: string } }) {
   const { id } = params;
 
-  // Add base URL for API requests - using NEXT_PUBLIC_VERCEL_URL for production
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'http://localhost:3000';
-
   try {
-    const response = await fetch(`${baseUrl}/api/recipes/${id}`);
+    // In development, we need absolute URL, in production we can use relative
+    const url = process.env.NODE_ENV === 'development' 
+      ? `http://localhost:3000/api/recipes/${id}`
+      : `/api/recipes/${id}`;
+
+    const response = await fetch(url, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      cache: 'no-store'
+    });
     
     if (!response.ok) {
       throw new Error(`Failed to fetch recipe: ${response.statusText}`);
@@ -69,7 +74,7 @@ export default async function RecipePage({ params }: { params: { id: string } })
               {error instanceof Error ? error.message : 'Failed to load recipe'}
             </p>
             <a 
-              href="/recipes" 
+              href="/" 
               className="inline-block bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
             >
               Back to Recipes
