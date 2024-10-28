@@ -4,10 +4,9 @@ export default async function RecipePage({ params }: { params: { id: string } })
   const { id } = params;
 
   try {
-    // In development, we need absolute URL, in production we can use relative
-    const url = process.env.NODE_ENV === 'development' 
-      ? `http://localhost:3000/api/recipes/${id}`
-      : `/api/recipes/${id}`;
+    // Use environment variable for the base URL in both dev and prod
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const url = `${baseUrl}/api/recipes/${id}`;
 
     const response = await fetch(url, {
       headers: {
