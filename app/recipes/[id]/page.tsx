@@ -1,16 +1,12 @@
 import { Recipe } from "../../types";
-
-// interface RecipePageProps {
-//   recipe: Recipe | null;
-// }
+import { fetchApi } from "@/app/utils/api";
 
 export default async function RecipePage({ params }: { params: { id: string } }) {
   const { id } = params;
-
+  let recipe: Recipe | null = null;
+  
   // Fetch the recipe data on the server side
-  const response = await fetch(`http://localhost:3000/api/recipes/${id}`);
-  const recipe: Recipe | null = response.ok ? await response.json() : null;
-
+  recipe = await fetchApi(`/api/recipes/${id}`);
   return (
     <main className="min-h-screen pt-4">
       <div className="bg-green-50 rounded-lg shadow-md p-8">
