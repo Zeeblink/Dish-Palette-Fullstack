@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileCard from '../components/ProfileCard';
+// import ProfileCard from '../components/ProfileCard';
 import UserRecipes from '../components/UserRecipes';
 import Link from 'next/link';
 
@@ -8,7 +8,7 @@ export default async function Dashboard() {
   return (
     <div className="flex min-h-screen bg-secondary">
       {/* Sidebar */}
-      <ProfileCard />
+      {/* <ProfileCard /> */}
       
       <main className="flex-1 p-6">
       {/* Top Navbar */}

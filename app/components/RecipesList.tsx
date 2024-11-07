@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 const RecipeList = () => {
     const [recipes, setRecipes] = useState<Recipe[]>([]);
-    const [loading, setLoading] = useState(true);
+    // const [loading, setLoading] = useState(true);
     useEffect(() => {
         const fetchRecipes = async () => {
             try {
@@ -16,13 +16,12 @@ const RecipeList = () => {
                     throw new Error('Failed to fetch data');
                 }
                 setRecipes(await res.json());
-                console.log(recipes)
             } catch (error) {
                 console.log(error)
             }
         }
         fetchRecipes();
-    },);
+    }, []); // Remove the comma and just use empty array
 
     return (
         recipes ? <div className='mb-8 sm:grid sm:grid-cols-3 gap-3 px-4 sm:px-8'>
