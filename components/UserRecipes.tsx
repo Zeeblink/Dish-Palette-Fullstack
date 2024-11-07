@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '@clerk/nextjs';
-import { Recipe } from '../types'
+import { Recipe } from '../app/types'
 import { useRouter } from 'next/navigation'
 
 const UserRecipes = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 // import ProfileCard from '../components/ProfileCard';
-import UserRecipes from '../components/UserRecipes';
+import UserRecipes from '@/components/UserRecipes';
 import Link from 'next/link';
 
 export default async function Dashboard() {

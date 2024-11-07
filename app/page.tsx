@@ -1,5 +1,5 @@
-import Hero from "./components/Hero";
-import RecipeList from "./components/RecipesList";
+import Hero from "@/components/Hero";
+import RecipeList from "@/components/RecipesList";
 // import CategoryButton from "./components/Category";
 import Link from "next/link";
 import { SignedOut } from "@clerk/nextjs";

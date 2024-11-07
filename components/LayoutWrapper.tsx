@@ -1,7 +1,7 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import MainLayout from '../layouts/MainLayout'
+import MainLayout from '../app/layouts/MainLayout'
 
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()

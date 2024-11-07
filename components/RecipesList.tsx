@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-import { Recipe } from '../types'
+import { Recipe } from '../app/types'
 import Link from 'next/link'
 
 const RecipeList = () => {
