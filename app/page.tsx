@@ -6,23 +6,10 @@ import { SignedOut } from "@clerk/nextjs";
 
 export default function Home() {
   return (
-    <main className="bg-gray-100">
+    <main className="py-10">
       <Hero />
       <RecipeList />
-      {/* Categories */}
-      {/* <section className="py-12">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-semibold text-gray-800 mb-6">
-            Explore Categories
-          </h2>
-          <div className="flex justify-center gap-4">
-            <CategoryButton name="Desserts" />
-            <CategoryButton name="Main Courses" />
-            <CategoryButton name="Appetizers" />
-            <CategoryButton name="Drinks" />
-          </div>
-        </div>
-      </section> */}
+
       {/* CTA Section */}
       <SignedOut>
       <section className="py-12 bg-green-50">

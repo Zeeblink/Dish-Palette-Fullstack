@@ -9,12 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: '#16A34A', // dark green
-        secondary: "#f5faf7", // light green
+        primary: '#16A34A',
+        secondary: "#f5faf7",
         gray2: '#f3f4f6',
       }
     },
   },
   plugins: [],
 };
+
 export default config;

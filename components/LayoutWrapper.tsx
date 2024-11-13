@@ -10,7 +10,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
   const excludedPaths = ['/sign-in', '/sign-up', '/sign-up/verify-email-address']
 
   if (excludedPaths.includes(pathname)) {
-    return <main className='flex min-h-screen flex-col justify-center items-center'>{children}</main>
+    return <main className='flex min-h-screen flex-col justify-center items-center bg-gray-100'>{children}</main>
   }
 
   return <MainLayout>{children}</MainLayout>

@@ -1,7 +1,7 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
-import { Recipe } from '../types'
+import { Recipe } from '@/types'
 import Link from 'next/link'
 
 export default function SearchPage() {

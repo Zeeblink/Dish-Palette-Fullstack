@@ -1,6 +1,6 @@
 import React from 'react';
-// import ProfileCard from '../components/ProfileCard';
-import UserRecipes from '@/components/UserRecipes';
+import { Plus } from 'lucide-react'
+import UserRecipes from '@/components/dashboard/UserRecipes';
 import Link from 'next/link';
 
 export default async function Dashboard() {
@@ -34,8 +34,12 @@ export default async function Dashboard() {
 
 
       {/* Floating "Create New Recipe" Button */}
-      <Link href='/create-recipe' className="fixed bottom-10 right-10 bg-white text-primary p-4 rounded-full shadow-lg hover:bg-primary transition">
-        ➕
+      <Link
+        href={'/create-recipe'}
+        className="fixed bottom-8 right-8 bg-[#16A34A] p-3 rounded-full text-white shadow-lg hover:bg-[#138a3f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#16A34A]"
+        aria-label="Create New Recipe"
+      >
+        <Plus className="h-6 w-6" />
       </Link>
     </main>
 

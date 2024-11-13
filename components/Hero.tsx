@@ -16,8 +16,8 @@ const Hero = () => {
   return (
     <>
       {/* <!-- Hero section --> */}
-      <div className=" flex-col w-full pt-24 sm:pt-24 px-4 h-[70vh] items-center">
-        <h1 className="text-center text-4xl sm:text-5xl mb-14 text-gray-800 leading-1.5 roboto-regular">
+      <div className=" flex-col w-full mt-10 sm:mt-16 mb-24 px-4">
+        <h1 className="text-center text-4xl sm:text-5xl mb-14 text-gray-800 leading-1.5">
           Find the Perfect Recipe for your next meal
         </h1>
         <form
