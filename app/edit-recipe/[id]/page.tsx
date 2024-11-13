@@ -4,7 +4,7 @@ import { useAuth } from '@clerk/nextjs';
 import { useRouter, useParams } from 'next/navigation';
 import Image from 'next/image';
 import { CldUploadWidget } from 'next-cloudinary';
-import { Recipe } from '@/app/types';
+import { Recipe } from '@/types';
 
 
 

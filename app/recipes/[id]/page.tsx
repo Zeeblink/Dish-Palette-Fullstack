@@ -1,4 +1,5 @@
 import { Recipe } from "@/types";
+import Image from "next/image";
 
 export default async function RecipePage({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -26,7 +27,7 @@ export default async function RecipePage({ params }: { params: { id: string } })
         <div className="bg-green-50 rounded-lg shadow-md p-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             <div className="md:col-span-1">
-              <img
+              <Image
                 src={recipe?.image}
                 alt={recipe?.title}
                 className="w-full rounded-lg"

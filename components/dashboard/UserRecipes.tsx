@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useAuth } from '@clerk/nextjs'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import Image from 'next/image'
 import { MoreVertical, ThumbsUp, MessageCircle, Eye, Edit, Trash } from 'lucide-react'
 import { Recipe } from '@/types'
 
@@ -58,7 +59,7 @@ const UserRecipes = () => {
       {userRecipes.map((recipe) => (
         <div key={recipe.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-lg">
           <div className="relative h-48">
-            <img src={recipe.image} alt={recipe.title} className="w-full h-full object-cover" />
+            <Image src={recipe.image} alt={recipe.title} className="w-full h-full object-cover" />
           </div>
           <div className="p-4">
             <h3 className="text-lg font-semibold text-[#16A34A] mb-2 truncate">{recipe.title}</h3>

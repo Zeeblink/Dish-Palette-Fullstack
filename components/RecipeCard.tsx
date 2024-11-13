@@ -1,5 +1,5 @@
-// components/RecipeCard.tsx
 import React from 'react';
+import Image from 'next/image';
 
 type Recipe = {
   id: number;
@@ -11,7 +11,7 @@ type Recipe = {
 const RecipeCard = ({ recipe }: { recipe: Recipe }) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
-      <img src={recipe.image} alt={recipe.title} className="w-full h-48 object-cover" />
+      <Image src={recipe.image} alt={recipe.title} className="w-full h-48 object-cover" />
       <div className="p-4">
         <h3 className="text-xl font-semibold mb-2">{recipe.title}</h3>
         <p className="text-gray-600 mb-4">{recipe.description}</p>

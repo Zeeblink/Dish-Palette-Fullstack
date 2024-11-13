@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
 import RecipeList from "@/components/RecipesList";
-// import CategoryButton from "./components/Category";
 import Link from "next/link";
 import { SignedOut } from "@clerk/nextjs";
 
@@ -9,7 +8,6 @@ export default function Home() {
     <main className="py-10">
       <Hero />
       <RecipeList />
-
       {/* CTA Section */}
       <SignedOut>
       <section className="py-12 bg-green-50">
