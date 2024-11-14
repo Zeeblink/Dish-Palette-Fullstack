@@ -30,6 +30,8 @@ export default async function RecipePage({ params }: { params: { id: string } })
               <Image
                 src={recipe?.image}
                 alt={recipe?.title}
+                width={'500'}
+                height={'300'}
                 className="w-full rounded-lg"
               />
             </div>

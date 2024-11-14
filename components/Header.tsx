@@ -90,6 +90,7 @@ const Header = () => {
           </ul>
         </div>
 
+        {/* Mobile Nav */}
         {/* Hamburger icon */}
         <div className="lg:hidden flex">
           <SignedIn>
@@ -126,7 +127,7 @@ const Header = () => {
 
         {/*mobile nav items */}
         {visibility && (
-          <div className="lg:hidden w-full flex-grow lg:flex lg:items-center lg:w-auto">
+          <div className="w-full flex-grow">
             <ul>
               <li>
                 <Link

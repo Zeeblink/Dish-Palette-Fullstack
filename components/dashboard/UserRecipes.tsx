@@ -59,7 +59,8 @@ const UserRecipes = () => {
       {userRecipes.map((recipe) => (
         <div key={recipe.id} className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-lg">
           <div className="relative h-48">
-            <Image src={recipe.image} alt={recipe.title} className="w-full h-full object-cover" />
+            <Image src={recipe.image} alt={recipe.title} className="w-full h-full object-cover"
+            width={'500'} height={'300'} />
           </div>
           <div className="p-4">
             <h3 className="text-lg font-semibold text-[#16A34A] mb-2 truncate">{recipe.title}</h3>
